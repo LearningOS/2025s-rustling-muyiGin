@@ -27,9 +27,6 @@ impl Graph for UndirectedGraph {
     fn adjacency_table(&self) -> &HashMap<String, Vec<(String, i32)>> {
         &self.adjacency_table
     }
-    fn add_edge(&mut self, edge: (&str, &str, i32)) {
-        Graph::add_edge(self, edge);
-    }
 }
 pub trait Graph {
     fn new() -> Self;
