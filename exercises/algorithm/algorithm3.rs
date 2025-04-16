@@ -4,7 +4,7 @@
     you can use bubble sorting, insertion sorting, heap sorting, etc.
 */
 
-fn sort<T>(array: &mut [T]) {
+fn sort<T: PartialOrd>(array: &mut [T]) {
     let len = array.len();
     if len < 2 {
         return;

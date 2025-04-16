@@ -41,7 +41,8 @@ where
 
         let mut idx = self.count;
         while idx > 1 && (self.comparator)(&self.items[idx], &self.items[self.parent_idx(idx)]) {
-            self.items.swap(idx, self.parent_idx(idx));
+            let parent_idx = self.parent_idx(idx);
+            self.items.swap(idx, parent_idx);
             idx = self.parent_idx(idx);
         }
     }

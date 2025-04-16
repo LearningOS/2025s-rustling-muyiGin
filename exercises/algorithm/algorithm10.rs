@@ -28,7 +28,7 @@ impl Graph for UndirectedGraph {
         &self.adjacency_table
     }
     fn add_edge(&mut self, edge: (&str, &str, i32)) {
-        //TODO
+        Graph::add_edge(self, edge);
     }
 }
 pub trait Graph {

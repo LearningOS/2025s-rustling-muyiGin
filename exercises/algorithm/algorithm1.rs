@@ -5,7 +5,6 @@
 
 use std::fmt::{self, Display, Formatter};
 use std::ptr::NonNull;
-use std::vec::*;
 
 #[derive(Debug)]
 struct Node<T> {
@@ -75,7 +74,7 @@ impl<T> LinkedList<T> {
 
         match self.end {
             None => self.start = Some(node), // 链表为空就直接放进来
-            Some(mut end_ptr) => unsafe {
+            Some(end_ptr) => unsafe {
                 (*end_ptr.as_ptr()).next = Some(node);
             },
         }
@@ -83,9 +82,11 @@ impl<T> LinkedList<T> {
         self.end = Some(node);
         self.length += 1;
     }
-    // 这里是题目要求的方式进行merge
+}
+// 这里是题目要求的方式进行merge
+impl<T: PartialOrd> LinkedList<T> {
     pub fn merge(mut list_a: LinkedList<T>, mut list_b: LinkedList<T>) -> Self {
-        let mut merged = LinkedList::new();
+        let mut merged = LinkedList::new(); // 这里现在能正常调用了
         let mut a = list_a.start.take();
         let mut b = list_b.start.take();
         while let (Some(na), Some(nb)) = (a, b) {
@@ -103,7 +104,6 @@ impl<T> LinkedList<T> {
                 }
             }
         }
-        // 把剩下节点都接上
         while let Some(na) = a {
             unsafe {
                 let next = (*na.as_ptr()).next;
@@ -121,7 +121,6 @@ impl<T> LinkedList<T> {
         merged
     }
 }
-
 impl<T> Display for LinkedList<T>
 where
     T: Display,

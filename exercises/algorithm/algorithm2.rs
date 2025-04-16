@@ -82,6 +82,7 @@ impl<T> LinkedList<T> {
                 current = temp;
             }
         }
+        std::mem::swap(&mut self.start, &mut self.end);
     }
 }
 

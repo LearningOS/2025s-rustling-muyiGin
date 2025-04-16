@@ -23,7 +23,7 @@ impl<T> Queue<T> {
         if !self.elements.is_empty() {
             Ok(self.elements.remove(0usize))
         } else {
-            Err("Queue is empty")
+            Err("Stack is empty")
         }
     }
 
@@ -50,7 +50,10 @@ impl<T> Default for Queue<T> {
         }
     }
 }
-
+pub struct myStack<T> {
+    q1: Queue<T>,
+    q2: Queue<T>,
+}
 impl<T> myStack<T> {
     pub fn new() -> Self {
         Self {
